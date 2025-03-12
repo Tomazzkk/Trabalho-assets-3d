@@ -38,7 +38,27 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("Running", false);
         }
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            animator.SetBool("Jump", true);
+            
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            animator.SetBool("Dancing", true);
+
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            animator.SetBool("Laydown", true);
+
+        }  
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            animator.SetBool("Punching", true);
+
+        }
+
     }
 
     public void Move()
