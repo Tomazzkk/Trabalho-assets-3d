@@ -8,13 +8,16 @@ public class Player : MonoBehaviour
     public float velocidadeRotacao = 5;
     public int jumpForce = 10;
     private Rigidbody rb;
+    private CharacterController controller;
     //[SerializeField] public Animator Animator;
     public bool isGrounded;
+    public GameObject particula;
    
     public Transform cameraTransform;
     public Animator animator;
     void Start()
     {
+    
 
         rb = GetComponent<Rigidbody>();
         
@@ -76,8 +79,17 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, novaRotacao, velocidadeRotacao * Time.deltaTime);
     }
 
-    
 
-
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("enemy"))
+        {
+            GetComponent<AudioSource>().Play();
+            Destroy(collision.gameObject);
+            SpawnCervejinha.instance.numspawm--;
+            Instantiate(particula, collision.gameObject.transform.position, Quaternion.identity);
+        }
+    }
+   
+   
 }
